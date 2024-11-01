@@ -1,94 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Easy Player</title>
+  <title>Deeplink Test</title>
 </head>
 <body>
-    <h1>Open Easy Player Details</h1>
 
-    <!-- Button to open general details page -->
-    <button id="detailsButton">Open Details Page</button>
+  <h1>Deeplink Test</h1>
 
-    <h2>Individual Details Pages</h2>
-    <div>
-        <!-- Buttons for specific details pages with unique IDs -->
-        <button onclick="openEasyPlayerDetails(1)">test 1 MDP</button>
-        <button onclick="openEasyPlayerDetails(2)">test 2 labtop</button>
-        <button onclick="openEasyPlayerDetails(3)">test 3 #yal elkafr</button>
-        <!-- Add more buttons as needed -->
-    </div>
+  <button id="deeplinkButton">Open App</button>
 
-    <script>
-        function getPlatform() {
-            // Basic detection to differentiate Android from iOS and desktop
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(userAgent)) {
-                return 'android';
-            }
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return 'ios';
-            }
-            return 'desktop';
+  <script>
+    const deeplinkButton = document.getElementById('deeplinkButton');
+
+    deeplinkButton.addEventListener('click', () => {
+      const deeplinkUrl = 'https://easyplayer.com/details'; // Replace with your actual deeplink
+
+      // Attempt to open the deeplink
+      window.location.href = deeplinkUrl;
+
+      // If the app is not installed, redirect to Google
+      setTimeout(() => {
+        if (window.location.href !== deeplinkUrl) {
+          window.location.href = 'https://www.google.com';
         }
+      }, 1000); // Adjust timeout as needed
+    });
+  </script>
 
-        function openEasyPlayerDetails(id) {
-            // Define unique URLs for each button based on the ID
-            let videoUrl, imageUrl;
-            const personId = encodeURIComponent("userId_" + id);
-
-            switch(id) {
-                case 1:
-                    videoUrl = encodeURIComponent("https://dr-taha.s3.amazonaws.com/videos/2/output.mpd");
-                    imageUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_img.jpg");
-                    break;
-                case 2:
-                    videoUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test2.mp4");
-                    imageUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_img.jpg");
-                    break;
-                case 3:
-                    videoUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_vid.mp4");
-                    imageUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_img.jpg");
-                    break;
-                default:
-                    videoUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_vid.mp4");
-                    imageUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_img.jpg");
-            }
-
-            // Determine the platform and construct the URL accordingly
-            let url;
-            const platform = getPlatform();
-            if (platform === 'android') {
-                url = `https://easyplayer.com/?video=${videoUrl}&image=${imageUrl}&personId=${personId}`;
-            } else {
-                // Use the custom URL protocol for iOS and desktop
-                url = `easyplayer://?video=${videoUrl}&image=${imageUrl}&personId=${personId}`;
-            }
-
-            // Redirect to the app with the generated URL
-            window.location.href = url;
-        }
-
-        // Add click event for the general details button
-        document.getElementById('detailsButton').addEventListener('click', function () {
-            const defaultVideoUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_vid.mp4");
-            const defaultImageUrl = encodeURIComponent("https://easy-player-bucket.s3.eu-central-1.amazonaws.com/test_img.jpg");
-            const defaultUserId = encodeURIComponent("userId_default"); // Default user ID
-
-            // Determine the platform and construct the URL accordingly
-            let url;
-            // const platform = getPlatform();
-            // if (platform === 'android') {
-            // } else {
-            //     // Use the custom URL protocol for iOS and desktop
-            //     url = `easyplayer://?video=${defaultVideoUrl}&image=${defaultImageUrl}&personId=${defaultUserId}`;
-            // }
-            url = `https://easyplayer.com/`;
-
-            // Redirect to the app with the generated URL
-            window.location.href = url;
-        });
-    </script>
 </body>
 </html>
