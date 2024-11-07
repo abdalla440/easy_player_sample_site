@@ -19,7 +19,7 @@
       const studentId = "15";
       
       // Encrypt data using a symmetric key (shared secret)
-      const secretKey = "your-secret-key"; // Replace with a secure key
+      const secretKey = "b2df428b9929d3ace7c598bbf4e496b2"; // Replace with a secure key
       const encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ url_video: urlVideo, student_id: studentId }), secretKey).toString();
 
       // Construct the deep link with encrypted data
