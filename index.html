@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -58,3 +58,39 @@
 
 </body>
 </html>
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Deeplink Test</title>
+</head>
+
+<body>
+
+  <h1>Deeplink Test</h1>
+
+  <button id="deeplinkButton">Open App</button>
+
+  <script>
+    const deeplinkButton = document.getElementById('deeplinkButton');
+
+    deeplinkButton.addEventListener('click', () => {
+      const deeplinkUrl = 'easyplayer://details'; // Replace with your app's deep link scheme
+      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
+      const studentId = "15";
+
+      // Construct the deeplink with unencrypted data
+      const encryptedDeeplinkUrl = `${deeplinkUrl}?url_video=${encodeURIComponent(urlVideo)}&student_id=${encodeURIComponent(studentId)}`;
+
+      // Redirect to the deep link
+      window.location.href = encryptedDeeplinkUrl;
+    });
+  </script>
+
+</body>
+
+</html>
+
+
