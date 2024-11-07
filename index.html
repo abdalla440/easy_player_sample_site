@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Deeplink Test</title>
+  <!-- Load CryptoJS library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
-
 <body>
 
   <h1>Deeplink Test</h1>
@@ -15,34 +15,21 @@
     const deeplinkButton = document.getElementById('deeplinkButton');
 
     deeplinkButton.addEventListener('click', () => {
-      const deeplinkUrl = 'https://easyplayer/details'; // Replace with your actual deeplink
       const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
       const studentId = "15";
       
-      // AJAX POST request
-      fetch(deeplinkUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            url_video: urlVideo,
-            student_id: studentId,
-          }),
-        })
-        .then(response => {
-          if (response.ok) {
-            // Successfully sent data
-            console.log("Data sent successfully");
-            window.location.href = deeplinkUrl;
-          } else {
-            console.error("Failed to send data");
-          }
-        })
-        .catch(error => console.error("Error:", error));
+      // Encrypt data using a symmetric key (shared secret)
+      const secretKey = "your-secret-key"; // Replace with a secure key
+      const encryptedData = CryptoJS.AES.encrypt(JSON.stringify({ url_video: urlVideo, student_id: studentId }), secretKey).toString();
+
+      // Construct the deep link with encrypted data
+      const deeplinkUrl = `https://easyplayer/details?data=${encodeURIComponent(encryptedData)}`;
+
+      // Redirect to the deep link
+      window.location.href = deeplinkUrl;
     });
   </script>
 
 </body>
-
 </html>
+
