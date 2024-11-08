@@ -1,70 +1,9 @@
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-  <title>Deeplink Test</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
-</head>
-
-<body>
-
-  <h1>Deeplink Test</h1>
-
-  <button id="deeplinkButton">Open App</button>
-
-  <script>
-    const deeplinkButton = document.getElementById('deeplinkButton');
-
-    deeplinkButton.addEventListener('click', () => {
-      const deeplinkUrl = 'easyplayer://details'; // Replace with your app's deep link scheme
-      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
-      const studentId = "15";
-
-      // Encryption key provided by the user
-      const encryptionKey = 'PFfn8Uhu1uV4ncJ8qFnofESuo6F5NKdhC4eeyxq4gSU=';
-
-      // Encrypt the data using CryptoJS with the provided encryption key
-      const encryptedData = CryptoJS.AES.encrypt(
-        JSON.stringify({ url_video: urlVideo, student_id: studentId }), 
-        CryptoJS.enc.Base64.parse(encryptionKey)  // Key must be Base64 encoded
-      ).toString();
-
-      // Construct the deeplink with encrypted data
-      const encryptedDeeplinkUrl = `${deeplinkUrl}?data=${encodeURIComponent(encryptedData)}`;
-
-      // Send data via AJAX (optional)
-      fetch('https://easyplayer/details', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url_video: urlVideo,
-          student_id: studentId,
-        }),
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log("Data sent successfully");
-          // Redirect to the deep link
-          window.location.href = encryptedDeeplinkUrl;
-        } else {
-          console.error("Failed to send data");
-        }
-      })
-      .catch(error => console.error("Error:", error));
-    });
-  </script>
-
-</body>
-</html>
- -->
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Deeplink Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/build/jwt-simple.min.js"></script>
 </head>
 
 <body>
@@ -81,8 +20,20 @@
       const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
       const studentId = "15";
 
-      // Construct the deeplink with unencrypted data
-      const encryptedDeeplinkUrl = `${deeplinkUrl}?url_video=${encodeURIComponent(urlVideo)}&student_id=${encodeURIComponent(studentId)}`;
+      // Prepare data to be encrypted
+      const payload = {
+        url_video: urlVideo,
+        student_id: studentId
+      };
+
+      // Define a secret key for encoding (replace with a secure key)
+      const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
+
+      // Generate the JWT token
+      const token = jwt_encode(payload, secretKey);
+
+      // Construct the deeplink with encrypted JWT data
+      const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
 
       // Redirect to the deep link
       window.location.href = encryptedDeeplinkUrl;
@@ -92,5 +43,3 @@
 </body>
 
 </html>
-
-
