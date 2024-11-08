@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -15,47 +14,60 @@
   <button id="deeplinkButton">Open App</button>
 
   <script>
-    // Check if jwt is loaded
-    console.log('JWT:', jwt);
-
+    // Check if jwt is loaded after the script loads
+    let jwt;
     const deeplinkButton = document.getElementById('deeplinkButton');
 
-    deeplinkButton.addEventListener('click', () => {
-      if (typeof jwt === 'undefined') {
-        alert("JWT library not loaded. Check the library URL or CDN availability.");
-        return;
-      }
+    // Check if the library is loaded
+    if (typeof jwt === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/build/jwt-simple.min.js';
+        script.onload = () => {
+          // Use jwt now that it's loaded.
+          jwt = window.jwt;
+          console.log('JWT loaded:', jwt);
+          setupDeeplinkButton();
+        };
+        script.onerror = () => {
+          alert("Failed to load JWT library.");
+        };
+        document.body.appendChild(script);
+    } else {
+        console.log("JWT library loaded.");
+        setupDeeplinkButton();
+    }
 
-      // Define deep link URL scheme
-      const deeplinkUrl = 'https://easyplayer:/';
 
-      // Define the video URL and student ID for the payload
-      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
-      const studentId = "15";
+    function setupDeeplinkButton() {
+      deeplinkButton.addEventListener('click', () => {
+          // Check if jwt is defined
+          if (typeof jwt === 'undefined') {
+            alert('JWT library not loaded.');
+            return;
+          }
+          // ... rest of your code
+          const deeplinkUrl = 'https://easyplayer:/';
+          const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
+          const studentId = "15";
+          const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
 
-      // Define the payload
-      const payload = {
-        url_video: urlVideo,
-        student_id: studentId
-      };
 
-      // Define the secret key for encoding
-      const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
+          const payload = {
+            url_video: urlVideo,
+            student_id: studentId
+          };
 
-      try {
-        // Generate the JWT token
-        const token = jwt.encode(payload, secretKey);
+          try {
+            const token = jwt.encode(payload, secretKey);
+            const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
+            window.location.href = encryptedDeeplinkUrl;
+          } catch (error) {
+            console.error("Error encoding JWT:", error);
+            alert("Failed to create JWT token.");
+          }
+      });
+    }
 
-        // Construct the deep link URL with the JWT token as a query parameter
-        const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
-
-        // Redirect to the deep link
-        window.location.href = encryptedDeeplinkUrl;
-      } catch (error) {
-        console.error("Error encoding JWT:", error);
-        alert("Failed to create JWT token.");
-      }
-    });
   </script>
 
 </body>
