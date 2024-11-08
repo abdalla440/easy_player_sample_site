@@ -2,13 +2,13 @@
 <html>
 
 <head>
-  <title>Deeplink Test</title>
+  <title>Deep Link Test</title>
   <script src="https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/build/jwt-simple.min.js"></script>
 </head>
 
 <body>
 
-  <h1>Deeplink Test</h1>
+  <h1>Deep Link Test</h1>
 
   <button id="deeplinkButton">Open App</button>
 
@@ -16,23 +16,26 @@
     const deeplinkButton = document.getElementById('deeplinkButton');
 
     deeplinkButton.addEventListener('click', () => {
-      const deeplinkUrl = 'https://easyplayer:/'; // Replace with your app's deep link scheme
+      // Define deep link URL scheme (replace with your Flutter app’s URL scheme)
+      const deeplinkUrl = 'easyplayer://';
+      
+      // Define the video URL and student ID for the payload
       const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
       const studentId = "15";
 
-      // Prepare data to be encrypted
+      // Define the payload
       const payload = {
         url_video: urlVideo,
         student_id: studentId
       };
 
-      // Define a secret key for encoding (replace with a secure key)
+      // Define the secret key for encoding (ensure this matches the secret key in your Flutter app)
       const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
 
       // Generate the JWT token
-      const token = jwt_encode(payload, secretKey);
+      const token = jwt.encode(payload, secretKey);
 
-      // Construct the deeplink with encrypted JWT data
+      // Construct the deep link URL with the JWT token as a query parameter
       const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
 
       // Redirect to the deep link
