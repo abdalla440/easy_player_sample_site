@@ -1,73 +1,92 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
-  <title>Deep Link Test</title>
-  <!-- Load jwt-simple library -->
-  <script src="https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/build/jwt-simple.min.js"></script>
+  <title>Deeplink Test</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1-crypto-js.js"></script>
 </head>
 
 <body>
 
-  <h1>Deep Link Test</h1>
+  <h1>Deeplink Test</h1>
 
   <button id="deeplinkButton">Open App</button>
 
   <script>
-    // Check if jwt is loaded after the script loads
-    let jwt;
     const deeplinkButton = document.getElementById('deeplinkButton');
 
-    // Check if the library is loaded
-    if (typeof jwt === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/build/jwt-simple.min.js';
-        script.onload = () => {
-          // Use jwt now that it's loaded.
-          jwt = window.jwt;
-          console.log('JWT loaded:', jwt);
-          setupDeeplinkButton();
-        };
-        script.onerror = () => {
-          alert("Failed to load JWT library.");
-        };
-        document.body.appendChild(script);
-    } else {
-        console.log("JWT library loaded.");
-        setupDeeplinkButton();
-    }
+    deeplinkButton.addEventListener('click', () => {
+      const deeplinkUrl = 'easyplayer://details'; // Replace with your app's deep link scheme
+      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
+      const studentId = "15";
 
+      // Encryption key provided by the user
+      const encryptionKey = 'PFfn8Uhu1uV4ncJ8qFnofESuo6F5NKdhC4eeyxq4gSU=';
 
-    function setupDeeplinkButton() {
-      deeplinkButton.addEventListener('click', () => {
-          // Check if jwt is defined
-          if (typeof jwt === 'undefined') {
-            alert('JWT library not loaded.');
-            return;
-          }
-          // ... rest of your code
-          const deeplinkUrl = 'https://easyplayer:/';
-          const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
-          const studentId = "15";
-          const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
+      // Encrypt the data using CryptoJS with the provided encryption key
+      const encryptedData = CryptoJS.AES.encrypt(
+        JSON.stringify({ url_video: urlVideo, student_id: studentId }), 
+        CryptoJS.enc.Base64.parse(encryptionKey)  // Key must be Base64 encoded
+      ).toString();
 
+      // Construct the deeplink with encrypted data
+      const encryptedDeeplinkUrl = `${deeplinkUrl}?data=${encodeURIComponent(encryptedData)}`;
 
-          const payload = {
-            url_video: urlVideo,
-            student_id: studentId
-          };
+      // Send data via AJAX (optional)
+      fetch('https://easyplayer/details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url_video: urlVideo,
+          student_id: studentId,
+        }),
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Data sent successfully");
+          // Redirect to the deep link
+          window.location.href = encryptedDeeplinkUrl;
+        } else {
+          console.error("Failed to send data");
+        }
+      })
+      .catch(error => console.error("Error:", error));
+    });
+  </script>
 
-          try {
-            const token = jwt.encode(payload, secretKey);
-            const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
-            window.location.href = encryptedDeeplinkUrl;
-          } catch (error) {
-            console.error("Error encoding JWT:", error);
-            alert("Failed to create JWT token.");
-          }
-      });
-    }
+</body>
+</html>
+ -->
 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Deeplink Test</title>
+</head>
+
+<body>
+
+  <h1>Deeplink Test</h1>
+
+  <button id="deeplinkButton">Open App</button>
+
+  <script>
+    const deeplinkButton = document.getElementById('deeplinkButton');
+
+    deeplinkButton.addEventListener('click', () => {
+      const deeplinkUrl = 'https://easyplayer:/'; // Replace with your app's deep link scheme
+      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
+      const studentId = "15";
+
+      // Construct the deeplink with unencrypted data
+      const encryptedDeeplinkUrl = `${deeplinkUrl}?url_video=${encodeURIComponent(urlVideo)}&student_id=${encodeURIComponent(studentId)}`;
+
+      // Redirect to the deep link
+      window.location.href = encryptedDeeplinkUrl;
+    });
   </script>
 
 </body>
