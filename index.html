@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Deep Link Test</title>
+  <!-- Load jwt-simple library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-simple/0.5.6/jwt-simple.min.js"></script>
-
 </head>
 
 <body>
@@ -14,12 +15,20 @@
   <button id="deeplinkButton">Open App</button>
 
   <script>
+    // Check if jwt is loaded
+    console.log('jwt:', jwt);
+
     const deeplinkButton = document.getElementById('deeplinkButton');
 
     deeplinkButton.addEventListener('click', () => {
-      // Define deep link URL scheme (replace with your Flutter app’s URL scheme)
+      if (typeof jwt === 'undefined') {
+        alert("JWT library not loaded. Check the library URL or CDN availability.");
+        return;
+      }
+
+      // Define deep link URL scheme
       const deeplinkUrl = 'https://easyplayer:/';
-      
+
       // Define the video URL and student ID for the payload
       const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
       const studentId = "15";
@@ -30,17 +39,22 @@
         student_id: studentId
       };
 
-      // Define the secret key for encoding (ensure this matches the secret key in your Flutter app)
+      // Define the secret key for encoding
       const secretKey = "c2a3b59a81f5e2d9f2e5a31a5f7b2c1d4e5a81f2e9f3d4c3f7e2b1d4f5c3a9b2";
 
-      // Generate the JWT token
-      const token = jwt.encode(payload, secretKey);
+      try {
+        // Generate the JWT token
+        const token = jwt.encode(payload, secretKey);
 
-      // Construct the deep link URL with the JWT token as a query parameter
-      const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
+        // Construct the deep link URL with the JWT token as a query parameter
+        const encryptedDeeplinkUrl = `${deeplinkUrl}?token=${encodeURIComponent(token)}`;
 
-      // Redirect to the deep link
-      window.location.href = encryptedDeeplinkUrl;
+        // Redirect to the deep link
+        window.location.href = encryptedDeeplinkUrl;
+      } catch (error) {
+        console.error("Error encoding JWT:", error);
+        alert("Failed to create JWT token.");
+      }
     });
   </script>
 
