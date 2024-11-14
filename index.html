@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -29,6 +29,50 @@
 
       // Redirect to the deep link
       window.location.href = encryptedDeeplinkUrl;
+    });
+  </script>
+
+</body>
+
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html>
+
+<head>
+  <title>Deeplink Test</title>
+</head>
+
+<body>
+
+  <h1>Deeplink Test</h1>
+
+  <button id="deeplinkButton">Open App</button>
+
+  <script>
+    const deeplinkButton = document.getElementById('deeplinkButton');
+
+    deeplinkButton.addEventListener('click', () => {
+      // Define encrypted data
+      const data_test_encrept = 'Ws/cq3xd05Tl5Y1tDqGgWZa2CVX1cxleFM0ZCVh9SiRp2n8ocNd607GtiGvXuj9JLXqpq56FzknxFaX1UY51oF8YcOhizxF8YumWLHJ1KD12n4tZfLeo7G1/acFRTrERNCVv7dp20FkAG6+yWhEudhl05rBB/kThlnb6ds7i6xyWQcQCi4VSmU6gPIxkHCbZsd06nyCmxac0mx2DZGSrnn+7/FjwtdZ8EIXj6ir3CjZBe1NimeICMYeHblWaJNooDUgIpoU/I89BiPKyQWIrDruxjXIszs1qwkZnaW1Vlf9LE7qTZxtQHqLc9ShKgUme2kyWtijFy1x36TETC6Vb6V702iqxFgJskPKviTsPCnE1Tba02eSOziL9u7WoBlwrRIEcbuqqSut1xpjjjt/rHA00zrFwpR6Eu4zXmKMjv1jjFQWhxkOKXV6RqA7Qb6B+/YFyEZvGBSY1UskpOEADvopyecM4dR2dNarwTpGNmkLw7IDB+p+oC0nvrYNcmVCfUnplNBu36sy4PU0R2IDbqQ==';
+
+      // Detect platform and set deeplink URL accordingly
+      let deeplinkUrl = '';
+
+      if (/Android/i.test(navigator.userAgent)) {
+        // Android platform
+        deeplinkUrl = `https://easyplayer.com/?data=${encodeURIComponent(data_test_encrept)}`;
+      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // iOS platform
+        deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
+      } else {
+        // Desktop or unknown platform, use a web fallback or display a message
+        deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
+      }
+
+      // Redirect to the deep link
+      window.location.href = deeplinkUrl;
     });
   </script>
 
