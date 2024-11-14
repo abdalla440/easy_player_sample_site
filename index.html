@@ -9,69 +9,35 @@
 
   <h1>Deeplink Test</h1>
 
-  <button id="deeplinkButton">Open App</button>
+  <!-- Button for opening Android deep link -->
+  <button id="openAndroidButton">Open Android</button>
+
+  <!-- Button for opening Windows deep link -->
+  <button id="openWindowsButton">Open Windows</button>
 
   <script>
-    const deeplinkButton = document.getElementById('deeplinkButton');
+    const openAndroidButton = document.getElementById('openAndroidButton');
+    const openWindowsButton = document.getElementById('openWindowsButton');
 
-    deeplinkButton.addEventListener('click', () => {
-      const deeplinkUrl = 'easyplayer:/'; // Replace with your app's deep link scheme
-      const urlVideo = "https://dr-taha.s3.us-east-1.amazonaws.com/Week+4+E2.mp4/out.mpd";
-      const studentId = "9";
-      const idVideo = '1';
-      const lessonName = 'مرحب';
-      const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MTM4ODczLCJpYXQiOjE3MzEzNjI4NzMsImp0aSI6ImEwYjkwNDdiOTlkMzRiNzc5MDE3NTFhZDNhODA4N2QwIiwidXNlcl9pZCI6OX0.G38kBkzaqePfQ05d4aQUH1REZFie1HQMIkLFi3RiX-s'
-
+    // Event listener for Android deep link
+    openAndroidButton.addEventListener('click', () => {
       const data_test_encrept = 'Ws/cq3xd05Tl5Y1tDqGgWZa2CVX1cxleFM0ZCVh9SiRp2n8ocNd607GtiGvXuj9JLXqpq56FzknxFaX1UY51oF8YcOhizxF8YumWLHJ1KD12n4tZfLeo7G1/acFRTrERNCVv7dp20FkAG6+yWhEudhl05rBB/kThlnb6ds7i6xyWQcQCi4VSmU6gPIxkHCbZsd06nyCmxac0mx2DZGSrnn+7/FjwtdZ8EIXj6ir3CjZBe1NimeICMYeHblWaJNooDUgIpoU/I89BiPKyQWIrDruxjXIszs1qwkZnaW1Vlf9LE7qTZxtQHqLc9ShKgUme2kyWtijFy1x36TETC6Vb6V702iqxFgJskPKviTsPCnE1Tba02eSOziL9u7WoBlwrRIEcbuqqSut1xpjjjt/rHA00zrFwpR6Eu4zXmKMjv1jjFQWhxkOKXV6RqA7Qb6B+/YFyEZvGBSY1UskpOEADvopyecM4dR2dNarwTpGNmkLw7IDB+p+oC0nvrYNcmVCfUnplNBu36sy4PU0R2IDbqQ==';
-      // Construct the deeplink with unencrypted data
-      // const encryptedDeeplinkUrl = `${deeplinkUrl}?url_video=${encodeURIComponent(urlVideo)}&student_id=${encodeURIComponent(studentId)}&id_video=${encodeURIComponent(idVideo)}&lesson_name=${encodeURIComponent(lessonName)}&token=${encodeURIComponent(token)}`;
-      const encryptedDeeplinkUrl = `${deeplinkUrl}?data=${encodeURIComponent(data_test_encrept)}`;
+      
+      // Android deep link URL
+      const deeplinkUrl = `https://easyplayer:/?data=${encodeURIComponent(data_test_encrept)}`;
 
-      // Redirect to the deep link
-      window.location.href = encryptedDeeplinkUrl;
+      // Redirect to the Android deep link
+      window.location.href = deeplinkUrl;
     });
-  </script>
 
-</body>
-
-</html>
-
-
-<!--  <!DOCTYPE html>
-<html>
-
-<head>
-  <title>Deeplink Test</title>
-</head>
-
-<body>
-
-  <h1>Deeplink Test</h1>
-
-  <button id="deeplinkButton">Open App</button>
-
-  <script>
-    const deeplinkButton = document.getElementById('deeplinkButton');
-
-    deeplinkButton.addEventListener('click', () => {
-      // Define encrypted data
+    // Event listener for Windows deep link
+    openWindowsButton.addEventListener('click', () => {
       const data_test_encrept = 'Ws/cq3xd05Tl5Y1tDqGgWZa2CVX1cxleFM0ZCVh9SiRp2n8ocNd607GtiGvXuj9JLXqpq56FzknxFaX1UY51oF8YcOhizxF8YumWLHJ1KD12n4tZfLeo7G1/acFRTrERNCVv7dp20FkAG6+yWhEudhl05rBB/kThlnb6ds7i6xyWQcQCi4VSmU6gPIxkHCbZsd06nyCmxac0mx2DZGSrnn+7/FjwtdZ8EIXj6ir3CjZBe1NimeICMYeHblWaJNooDUgIpoU/I89BiPKyQWIrDruxjXIszs1qwkZnaW1Vlf9LE7qTZxtQHqLc9ShKgUme2kyWtijFy1x36TETC6Vb6V702iqxFgJskPKviTsPCnE1Tba02eSOziL9u7WoBlwrRIEcbuqqSut1xpjjjt/rHA00zrFwpR6Eu4zXmKMjv1jjFQWhxkOKXV6RqA7Qb6B+/YFyEZvGBSY1UskpOEADvopyecM4dR2dNarwTpGNmkLw7IDB+p+oC0nvrYNcmVCfUnplNBu36sy4PU0R2IDbqQ==';
+      
+      // Windows deep link URL
+      const deeplinkUrl = `easyplayer:/?data=${encodeURIComponent(data_test_encrept)}`;
 
-      // Detect platform and set deeplink URL accordingly
-      let deeplinkUrl = '';
-
-      if (/Android/i.test(navigator.userAgent)) {
-        // Android platform
-        deeplinkUrl = `https://easyplayer.com/?data=${encodeURIComponent(data_test_encrept)}`;
-      } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        // iOS platform
-        deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
-      } else {
-        // Desktop or unknown platform, use a web fallback or display a message
-        deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
-      }
-
-      // Redirect to the deep link
+      // Redirect to the Windows deep link
       window.location.href = deeplinkUrl;
     });
   </script>
@@ -79,4 +45,3 @@
 </body>
 
 </html>
- -->
