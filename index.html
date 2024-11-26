@@ -14,10 +14,14 @@
 
   <!-- Button for opening Windows deep link -->
   <button id="openWindowsButton">Open Windows</button>
+  <button id="openIOSButton">Open Windows</button>
+
+  
 
   <script>
     const openAndroidButton = document.getElementById('openAndroidButton');
     const openWindowsButton = document.getElementById('openWindowsButton');
+    const openIOSButton = document.getElementById('openIOSButton');
 
     // Event listener for Android deep link
     openAndroidButton.addEventListener('click', () => {
@@ -39,6 +43,17 @@
       const deeplinkUrl = `easyplayer:/?data=${encodeURIComponent(data_test_encrept)}`;
 
       // Redirect to the Windows deep link
+      window.location.href = deeplinkUrl;
+    });
+
+        // Event listener for Android deep link
+    openIOSButton.addEventListener('click', () => {
+      const data_test_encrept = '6FoI7C5cnZqR4uLWNQA/wGPTP3jf5RCMEykNpG9eSXrH4uf3mzVzLZb1nJTIgrXgB5Ja1n5wBiurDRCzcWR87tTNBCVX685a9RaggKX6c9OF1GHaGVPO0xgXAqY/TX7OhF0LA/2h+CcJcQUBlBC0MwytRhTal4LACiXHYcAOrVcObOGH/vEcUScQ8WByU2RZoEHbP9mVWhO6JeNKxus1OtYmg2xaeKfrVv/YPZGcEuhG4eb6A+ALR8gZLIFPFnisZ3ictxdv7KUboZCVHY0LqCXGxDhEvqxlykLif1eiAR+eZm7CxMSdGfA+0qiDaHAshLPk0CZUGI0BhFCtuatY7ZuLIgDGu7dMrQeHgTqhQgBQMeIdpZ7cOAp+VLktizlVTp33l3lNE893XBvOltoorGrhdYP7kQz00x4cgLMY7wMnWyUKOHNtWGQ6tO/9BBFKNLmM3dU5+CZI2GHbQ8dtLtlxaLNXWmR+H44i4E5ykrm7SO9L/7YRTy45ObQ9toQCkkDxZimrhKGLBEfLCMU14gBlkDTFY5tNJ6+nMgaLYFKqvFz7qtAEAs1nhEL3Ewy5';
+      
+      // Android deep link URL
+      const deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
+
+      // Redirect to the Android deep link
       window.location.href = deeplinkUrl;
     });
   </script>
