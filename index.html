@@ -2,30 +2,30 @@
 <html>
 
 <head>
-  <title>Deeplink Test</title>
+    <title>Deeplink Test</title>
 </head>
 
 <body>
 
-  <h1>Deeplink Test</h1>
+<h1>Deeplink Test</h1>
 
-  <!-- Button for opening Android deep link -->
-  <button id="openAndroidButton">Open Android</button>
+<!-- Button for opening Android deep link -->
+<button id="openAndroidButton">Open Android</button>
 
-  <!-- Button for opening Windows deep link -->
-  <button id="openWindowsButton">Open Windows</button>
-  <button id="openIOSButton">Open IOS</button>
+<!-- Button for opening Windows deep link -->
+<button id="openWindowsButton">Open Windows</button>
+<button id="openIOSButton">Open IOS</button>
 
-  
 
-  <script>
+
+<script>
     const openAndroidButton = document.getElementById('openAndroidButton');
     const openWindowsButton = document.getElementById('openWindowsButton');
     const openIOSButton = document.getElementById('openIOSButton');
 
     // Event listener for Android deep link
     openAndroidButton.addEventListener('click', () => {
-      const data_test_encrept = 'lLVGOrcwdb17BraINe9t3bCaZGSgVQ+P8deNrCjCKkO9XySgDVChorm8vG0jKQDircTx4hB52L9NzPKL5MUHyOk2rGLRUCAQXxvqQHoUzXVPQBFrlAw3aSmJ5czZ7KqumoIS8i0m7Hg3I8bzmplmA48yOvdSWGxOvQb8XVrhzksLHBMu8lxC0gRhz+LShnLAbyZLmQZeDQ2DqxUY8J6nHgFQtu64ZA+fYG0TQ8JsNvxKVvgdmVIAvw0vO+WRxBkheesqQ1ze8cOvHfeHUwF0QALv50bVMG+jRtNIpnVcjqx8cSOQmkhjzMjttkdAX0wyZ4yD2aSnfUA5akO2seVGumXiDlkYqZHKaylr+QtAYkzOB7Miea9eef7qvGJJIL2Yyut/N/4X5lGnBq1xaKN3tASNHVhhz3TL7HvjuRys5Hqyd7w0GF+fC0xoOiYaMVkTv+PClZb24xowsdeuzJGgNTNNKAFnO+tX+iuorjTRWMbIwXocAebeUyfWy6nVIgCRb66lLPFg7zAKlFgukFO3pK28nWQ5FLejI/fpnIp3Hdb0xZxlMPbYHTwp/nlrAXPL/2eNkXY2AN4rYmTYiwnMqKDn+M+Biqrcd7CLsHScxB4TNcr6M5mygcrgzYUGgC39Ui5St7T6ydNgH0mqqHmBM2gaXvHdPfdkUxJBVRAm4SuEQ3OioOk6/Ja1nj2kbVDw6xvMDq6iTpiXd7RG+UeX+i0pG3HwiJ3GYA1w4jLrh/tDbGUnqJ1mZ8k1u1tb6GKRq6FCs6pI2zIWQma0+h+I6eO0xpV6ngtqTrPvWUJMnWu4TBfvnjRjZ/MiZeJwb603HDaFnBzxklYxIgYhSnUcAWzIS3Z2kK4Cd6O3KWFL81ZnAOiZlww1//uQihftCEWo';
+      const data_test_encrept = 'Wp1InEJoGC8cmux0QSXDsCpAlC9kfl0GWJ9GXr6h0gJKIpYeU2MjclT/0MT71372YluZrYKBqLndMvya24DnxDF733TQ8WLxTOK6avBM72y+BopIG61Xy0A7yV4p4Db/KwHTI1sm8M1RKz1wC6Rl9DEV2iNByqqWakG9jGjp1jW1f/InS70+0Cqh4e9jS9hdGmbqrHx2ROMhF/MeoedVqGHkTQw4Oz4mCSO5wRh+S9AuHjDfeBrIr+Qs0RmI8VamjjAf4PN+q4zbU+FEvlDgTj4dCi3gfhz+sNtaJ4nPguvkr8mqRJl4/ANt4GhcCO/ZWEDn0WTO1aM3QQWtMmiLpgchIlnkhwwEzrwrJuEFnOB+lEe0vAKVsVoc/fUFll1qqf9G90KfFlBV7zmahcIsPKcDyFkRDK/KPRZrT+DJAxBdEq5UoIKJW+c+u6sjxXj5MjQN6LBu6hkoLdd3aG+ppOe/XrtdEbIjn13YZfxEUJpMpOba2VKkvN0pR/7B675CSA+vL9aRH6FqIiLCih2Buq2TN42A6ESi4Ce9LfT5UMWKpbUtNA1rhbfE5Bs2W9++3O/NWgr+mCzDxwrfa1h6jOi4wwL4kq5C4Bkz9LqnP7hk7diiSyl6HhhaABQ5O13HUrEIsIjQOy1mCgvPuFMa7f0Cj9a2OOYVq1dH5vNKHeLvq+XayMTY/YQc6jFHL+boM7tCYNX7jM9nRBIxEvRsWWyz/NEZ1CwOy54hXbKNhoNOQvTDO6ZqS72VUaV8Z6IywFI+2Qlrsn8sxABIWnt2HQ==';
       
       // Android deep link URL
       const deeplinkUrl = `https://easyplayer:/?data=${encodeURIComponent(data_test_encrept)}`;
@@ -35,7 +35,7 @@
     });
     // Event listener for Windows deep link
     openWindowsButton.addEventListener('click', () => {
-      const data_test_encrept = 'lLVGOrcwdb17BraINe9t3bCaZGSgVQ+P8deNrCjCKkO9XySgDVChorm8vG0jKQDircTx4hB52L9NzPKL5MUHyOk2rGLRUCAQXxvqQHoUzXVPQBFrlAw3aSmJ5czZ7KqumoIS8i0m7Hg3I8bzmplmA48yOvdSWGxOvQb8XVrhzksLHBMu8lxC0gRhz+LShnLAbyZLmQZeDQ2DqxUY8J6nHgFQtu64ZA+fYG0TQ8JsNvxKVvgdmVIAvw0vO+WRxBkheesqQ1ze8cOvHfeHUwF0QALv50bVMG+jRtNIpnVcjqx8cSOQmkhjzMjttkdAX0wyZ4yD2aSnfUA5akO2seVGumXiDlkYqZHKaylr+QtAYkzOB7Miea9eef7qvGJJIL2Yyut/N/4X5lGnBq1xaKN3tASNHVhhz3TL7HvjuRys5Hqyd7w0GF+fC0xoOiYaMVkTv+PClZb24xowsdeuzJGgNTNNKAFnO+tX+iuorjTRWMbIwXocAebeUyfWy6nVIgCRb66lLPFg7zAKlFgukFO3pK28nWQ5FLejI/fpnIp3Hdb0xZxlMPbYHTwp/nlrAXPL/2eNkXY2AN4rYmTYiwnMqKDn+M+Biqrcd7CLsHScxB4TNcr6M5mygcrgzYUGgC39Ui5St7T6ydNgH0mqqHmBM2gaXvHdPfdkUxJBVRAm4SuEQ3OioOk6/Ja1nj2kbVDw6xvMDq6iTpiXd7RG+UeX+i0pG3HwiJ3GYA1w4jLrh/tDbGUnqJ1mZ8k1u1tb6GKRq6FCs6pI2zIWQma0+h+I6eO0xpV6ngtqTrPvWUJMnWu4TBfvnjRjZ/MiZeJwb603HDaFnBzxklYxIgYhSnUcAWzIS3Z2kK4Cd6O3KWFL81ZnAOiZlww1//uQihftCEWo';
+      const data_test_encrept = 'Wp1InEJoGC8cmux0QSXDsCpAlC9kfl0GWJ9GXr6h0gJKIpYeU2MjclT/0MT71372YluZrYKBqLndMvya24DnxDF733TQ8WLxTOK6avBM72y+BopIG61Xy0A7yV4p4Db/KwHTI1sm8M1RKz1wC6Rl9DEV2iNByqqWakG9jGjp1jW1f/InS70+0Cqh4e9jS9hdGmbqrHx2ROMhF/MeoedVqGHkTQw4Oz4mCSO5wRh+S9AuHjDfeBrIr+Qs0RmI8VamjjAf4PN+q4zbU+FEvlDgTj4dCi3gfhz+sNtaJ4nPguvkr8mqRJl4/ANt4GhcCO/ZWEDn0WTO1aM3QQWtMmiLpgchIlnkhwwEzrwrJuEFnOB+lEe0vAKVsVoc/fUFll1qqf9G90KfFlBV7zmahcIsPKcDyFkRDK/KPRZrT+DJAxBdEq5UoIKJW+c+u6sjxXj5MjQN6LBu6hkoLdd3aG+ppOe/XrtdEbIjn13YZfxEUJpMpOba2VKkvN0pR/7B675CSA+vL9aRH6FqIiLCih2Buq2TN42A6ESi4Ce9LfT5UMWKpbUtNA1rhbfE5Bs2W9++3O/NWgr+mCzDxwrfa1h6jOi4wwL4kq5C4Bkz9LqnP7hk7diiSyl6HhhaABQ5O13HUrEIsIjQOy1mCgvPuFMa7f0Cj9a2OOYVq1dH5vNKHeLvq+XayMTY/YQc6jFHL+boM7tCYNX7jM9nRBIxEvRsWWyz/NEZ1CwOy54hXbKNhoNOQvTDO6ZqS72VUaV8Z6IywFI+2Qlrsn8sxABIWnt2HQ==';
       
       // Windows deep link URL
       const deeplinkUrl = `easyplayer://foo/#/link/${encodeURIComponent(data_test_encrept)}`;
@@ -46,7 +46,7 @@
 
         // Event listener for Android deep link
     openIOSButton.addEventListener('click', () => {
-      const data_test_encrept = 'lLVGOrcwdb17BraINe9t3bCaZGSgVQ+P8deNrCjCKkO9XySgDVChorm8vG0jKQDircTx4hB52L9NzPKL5MUHyOk2rGLRUCAQXxvqQHoUzXVPQBFrlAw3aSmJ5czZ7KqumoIS8i0m7Hg3I8bzmplmA48yOvdSWGxOvQb8XVrhzksLHBMu8lxC0gRhz+LShnLAbyZLmQZeDQ2DqxUY8J6nHgFQtu64ZA+fYG0TQ8JsNvxKVvgdmVIAvw0vO+WRxBkheesqQ1ze8cOvHfeHUwF0QALv50bVMG+jRtNIpnVcjqx8cSOQmkhjzMjttkdAX0wyZ4yD2aSnfUA5akO2seVGumXiDlkYqZHKaylr+QtAYkzOB7Miea9eef7qvGJJIL2Yyut/N/4X5lGnBq1xaKN3tASNHVhhz3TL7HvjuRys5Hqyd7w0GF+fC0xoOiYaMVkTv+PClZb24xowsdeuzJGgNTNNKAFnO+tX+iuorjTRWMbIwXocAebeUyfWy6nVIgCRb66lLPFg7zAKlFgukFO3pK28nWQ5FLejI/fpnIp3Hdb0xZxlMPbYHTwp/nlrAXPL/2eNkXY2AN4rYmTYiwnMqKDn+M+Biqrcd7CLsHScxB4TNcr6M5mygcrgzYUGgC39Ui5St7T6ydNgH0mqqHmBM2gaXvHdPfdkUxJBVRAm4SuEQ3OioOk6/Ja1nj2kbVDw6xvMDq6iTpiXd7RG+UeX+i0pG3HwiJ3GYA1w4jLrh/tDbGUnqJ1mZ8k1u1tb6GKRq6FCs6pI2zIWQma0+h+I6eO0xpV6ngtqTrPvWUJMnWu4TBfvnjRjZ/MiZeJwb603HDaFnBzxklYxIgYhSnUcAWzIS3Z2kK4Cd6O3KWFL81ZnAOiZlww1//uQihftCEWo';
+      const data_test_encrept = 'Wp1InEJoGC8cmux0QSXDsCpAlC9kfl0GWJ9GXr6h0gJKIpYeU2MjclT/0MT71372YluZrYKBqLndMvya24DnxDF733TQ8WLxTOK6avBM72y+BopIG61Xy0A7yV4p4Db/KwHTI1sm8M1RKz1wC6Rl9DEV2iNByqqWakG9jGjp1jW1f/InS70+0Cqh4e9jS9hdGmbqrHx2ROMhF/MeoedVqGHkTQw4Oz4mCSO5wRh+S9AuHjDfeBrIr+Qs0RmI8VamjjAf4PN+q4zbU+FEvlDgTj4dCi3gfhz+sNtaJ4nPguvkr8mqRJl4/ANt4GhcCO/ZWEDn0WTO1aM3QQWtMmiLpgchIlnkhwwEzrwrJuEFnOB+lEe0vAKVsVoc/fUFll1qqf9G90KfFlBV7zmahcIsPKcDyFkRDK/KPRZrT+DJAxBdEq5UoIKJW+c+u6sjxXj5MjQN6LBu6hkoLdd3aG+ppOe/XrtdEbIjn13YZfxEUJpMpOba2VKkvN0pR/7B675CSA+vL9aRH6FqIiLCih2Buq2TN42A6ESi4Ce9LfT5UMWKpbUtNA1rhbfE5Bs2W9++3O/NWgr+mCzDxwrfa1h6jOi4wwL4kq5C4Bkz9LqnP7hk7diiSyl6HhhaABQ5O13HUrEIsIjQOy1mCgvPuFMa7f0Cj9a2OOYVq1dH5vNKHeLvq+XayMTY/YQc6jFHL+boM7tCYNX7jM9nRBIxEvRsWWyz/NEZ1CwOy54hXbKNhoNOQvTDO6ZqS72VUaV8Z6IywFI+2Qlrsn8sxABIWnt2HQ==';
       
       // Android deep link URL
       const deeplinkUrl = `easyplayer://?data=${encodeURIComponent(data_test_encrept)}`;
